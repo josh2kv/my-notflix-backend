@@ -13,10 +13,10 @@ export class MovieController {
       if (!tmdbApiKey) throw new BadRequestError("TMDB API key is required");
 
       const { page } = req.query;
-      const movies = await this.movieService.getMovies({
-        page: Number(page),
-        apiKey: tmdbApiKey,
-      });
+      const movies = await this.movieService.getMovies(
+        Number(page),
+        tmdbApiKey
+      );
       res.json(ApiResponse.success(movies));
     } catch (error) {
       next(error);
@@ -34,5 +34,18 @@ export class MovieController {
       tmdbApiKey
     );
     res.json(ApiResponse.success(movie));
+  }
+
+  async getMovieVideos(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    const { user } = req;
+    const tmdbApiKey = user?.tmdbApiKey;
+    if (!tmdbApiKey) throw new BadRequestError("TMDB API key is required");
+
+    const videos = await this.movieService.getMovieVideos(
+      Number(id),
+      tmdbApiKey
+    );
+    res.json(ApiResponse.success(videos));
   }
 }

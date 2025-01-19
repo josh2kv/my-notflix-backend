@@ -28,8 +28,8 @@ export class TmdbService {
   private readonly configPath = "/configuration";
   private readonly imageBaseUrl = "https://image.tmdb.org/t/p/";
   private readonly posterSize = POSTER_SIZES.W500;
-  private readonly backdropSize = BACKDROP_SIZES.W1280;
-  private readonly profileSize = PROFILE_SIZES.W45;
+  private readonly backdropSize = BACKDROP_SIZES.ORIGINAL;
+  private readonly profileSize = PROFILE_SIZES.W185;
   private readonly maxCastCount = 5;
   private readonly maxVideoCount = 10;
 
@@ -67,7 +67,7 @@ export class TmdbService {
       language: "en-US",
       sort_by: "popularity.desc",
     };
-    console.log("params", params);
+
     const response = await this.client.get<ResMovies>(this.movieListPath, {
       params,
     });
@@ -150,7 +150,7 @@ export class TmdbService {
     const response = await this.client.get<ResMovieVideos>(
       this.movieVideosPath.replace(ROUTE_SEGMENT.ID_PARAM, id.toString())
     );
-    return response.data.results.map((video) => ({
+    return response.data.results.slice(0, this.maxVideoCount).map((video) => ({
       id: video.id,
       key: video.key,
       name: video.name,

@@ -12,11 +12,21 @@ import passport from "passport";
 import { jwtStrategy } from "./config/auth";
 import authRoutes from "./features/auth/auth.routes";
 import movieRoutes from "./features/movies/movie.routes";
+import cors from "cors";
 
 const bootstrap = async () => {
   const app: Express = express();
   const apiRouter = express.Router();
   const port = process.env.APP_PORT || 3000;
+
+  app.use(
+    cors({
+      origin: "*",
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true,
+    })
+  );
 
   await initializeDatabase();
 

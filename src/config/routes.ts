@@ -18,5 +18,7 @@ export const ROUTE_SEGMENT = {
 
   MOVIES: {
     ROOT: "/movies",
+    ID_PARAM: "/:id",
+    VIDEOS: "/videos",
   },
 } as const;

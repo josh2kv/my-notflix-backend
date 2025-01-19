@@ -2,7 +2,7 @@ import { TmdbService } from "./tmdb.service";
 
 // NOTE: TmdbService cannot be singleton because apiKey can vary in different requests
 export class MovieService {
-  getMovies({ page, apiKey }: { page: number; apiKey: string }) {
+  getMovies(page: number, apiKey: string) {
     const client = new TmdbService(apiKey);
     return client.getMovies(page);
   }
@@ -10,5 +10,10 @@ export class MovieService {
   getMovieWithCredits(id: number, apiKey: string) {
     const client = new TmdbService(apiKey);
     return client.getMovieWithCredits(id);
+  }
+
+  getMovieVideos(id: number, apiKey: string) {
+    const client = new TmdbService(apiKey);
+    return client.getMovieVideos(id);
   }
 }

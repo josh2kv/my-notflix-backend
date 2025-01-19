@@ -15,3 +15,10 @@ export class GetMovieWithCreditsDto {
   @Type(() => Number)
   id: number;
 }
+
+export class GetMovieVideosDto {
+  @IsNotEmpty()
+  @IsNumber()
+  @Type(() => Number)
+  id: number;
+}

@@ -1,4 +1,4 @@
-import { UserRole } from "@/types";
+import { Plan, UserRole } from "@/types";
 import {
   IsEnum,
   IsNotEmpty,
@@ -62,4 +62,5 @@ export type BriefUser = {
   email: string;
   role: UserRole;
   tmdbApiKey: string;
+  plan: Plan;
 };

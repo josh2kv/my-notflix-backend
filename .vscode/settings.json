@@ -1,9 +1,3 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "debug.javascript.autoAttachFilter": "smart",
-  "debug.javascript.terminalOptions": {
-    "skipFiles": ["<node_internals>/**"]
-  }
+  "cSpell.words": ["tmdb"]
 }

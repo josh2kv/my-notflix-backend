@@ -9,6 +9,7 @@ export class UserTransformer {
       email: user.email,
       role: user.role,
       tmdbApiKey: user.tmdbApiKey,
+      plan: user.plan,
     };
   }
 
