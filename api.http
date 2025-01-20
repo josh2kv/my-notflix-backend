@@ -30,6 +30,11 @@ content-type: application/json
 GET {{baseUrl}}/auth/check-email/test@test.com 
 
 
+### Check if TMDB API key is valid
+GET {{baseUrl}}/auth/check-tmdb-api-key/eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmNDNjZDZmNDVlOGU0Y2ZlOTY2ZjU1ZjI5ZGU5M2QwMyIsIm5iZiI6MTczNTg5NjQ4OC43NTEwMDAyLCJzdWIiOiI2Nzc3YWRhODE1NTIxZjgzZDk2NjhkMmUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.bIceVYRAEGRg7ZSAvakyljmVXuVvr-OydADM624UjI4
+
+
+
 
 ### Refresh token
 POST {{baseUrl}}/auth/refresh-token

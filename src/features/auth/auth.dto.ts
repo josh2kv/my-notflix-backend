@@ -56,6 +56,12 @@ export class CheckIfEmailExistsDto {
   email: string;
 }
 
+export class CheckIfTmdbApiKeyIsValidDto {
+  @IsNotEmpty()
+  @IsString()
+  tmdbApiKey: string;
+}
+
 export class RefreshTokenDto {
   @IsNotEmpty()
   @IsString()

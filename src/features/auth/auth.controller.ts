@@ -49,6 +49,22 @@ export class AuthController {
     }
   }
 
+  async checkIfTmdbApiKeyIsValid(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const tmdbApiKey: string = req.params.tmdbApiKey;
+      const isValid = await this.authService.checkIfTmdbApiKeyIsValid(
+        tmdbApiKey
+      );
+      res.json(ApiResponse.success({ isValid }));
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async refreshToken(req: Request, res: Response, next: NextFunction) {
     try {
       const { refreshToken }: RefreshTokenDto = req.body;

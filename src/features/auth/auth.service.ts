@@ -6,9 +6,10 @@ import { UnauthorizedError } from "@/shared/errors";
 import { JWT_REFRESH_EXPIRES_IN, JWT_SECRET } from "@/config/auth";
 import { JWT_EXPIRES_IN } from "@/config/auth";
 import jwt from "jsonwebtoken";
-import { RegisterDto, UserWithToken } from "./auth.dto";
+import { RegisterDto } from "./auth.dto";
 import { AppDataSource } from "@/config/db";
 import { RefreshToken } from "./refresh-token.model";
+import axios, { AxiosError } from "axios";
 
 export class AuthService {
   private userService = new UserService();
@@ -54,6 +55,25 @@ export class AuthService {
   async checkIfEmailExists(email: string): Promise<boolean> {
     const user = await this.userService.findUserByEmail(email);
     return !!user;
+  }
+
+  async checkIfTmdbApiKeyIsValid(tmdbApiKey: string): Promise<boolean> {
+    try {
+      const headers = {
+        Authorization: `Bearer ${tmdbApiKey}`,
+      };
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/authentication`,
+        { headers }
+      );
+
+      return response.data.success;
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.status === 401) {
+        return false;
+      }
+      throw error;
+    }
   }
 
   async refreshToken(token: string) {

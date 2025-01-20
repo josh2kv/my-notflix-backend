@@ -2,6 +2,7 @@ import { Router } from "express";
 import { AuthController } from "./auth.controller";
 import {
   CheckIfEmailExistsDto,
+  CheckIfTmdbApiKeyIsValidDto,
   LoginDto,
   RefreshTokenDto,
   RegisterDto,
@@ -123,6 +124,25 @@ router.get(
   ROUTE_SEGMENT.AUTH.CHECK_EMAIL + ROUTE_SEGMENT.EMAIL_PARAM,
   validateDto(CheckIfEmailExistsDto, "params"),
   authController.checkIfEmailExists.bind(authController)
+);
+
+/**
+ * @swagger
+ * /auth/check-tmdb-api-key:
+ *   get:
+ *     summary: Check if TMDB API key is valid
+ *     tags: [Auth]
+ *     parameters:
+ *       - in: path
+ *         name: tmdbApiKey
+ *         required: true
+ *         schema:
+ *           type: string
+ */
+router.get(
+  ROUTE_SEGMENT.AUTH.CHECK_TMDB_API_KEY + ROUTE_SEGMENT.TMDB_API_KEY_PARAM,
+  validateDto(CheckIfTmdbApiKeyIsValidDto, "params"),
+  authController.checkIfTmdbApiKeyIsValid.bind(authController)
 );
 
 /**
