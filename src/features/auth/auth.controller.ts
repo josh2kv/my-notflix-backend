@@ -43,7 +43,7 @@ export class AuthController {
     try {
       const email: string = req.params.email;
       const exists = await this.authService.checkIfEmailExists(email);
-      res.json(ApiResponse.success({ exists }));
+      res.json(ApiResponse.success(exists));
     } catch (error) {
       next(error);
     }
@@ -59,7 +59,7 @@ export class AuthController {
       const isValid = await this.authService.checkIfTmdbApiKeyIsValid(
         tmdbApiKey
       );
-      res.json(ApiResponse.success({ isValid }));
+      res.json(ApiResponse.success(isValid));
     } catch (error) {
       next(error);
     }
