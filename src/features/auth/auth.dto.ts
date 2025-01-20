@@ -50,6 +50,12 @@ export class RegisterDto {
   plan: Plan = Plan.STANDARD_WITH_ADS;
 }
 
+export class CheckIfEmailExistsDto {
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+}
+
 export class RefreshTokenDto {
   @IsNotEmpty()
   @IsString()

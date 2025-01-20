@@ -26,6 +26,11 @@ content-type: application/json
 }
 
 
+### Check if email exists
+GET {{baseUrl}}/auth/check-email/test@test.com 
+
+
+
 ### Refresh token
 POST {{baseUrl}}/auth/refresh-token
 content-type: application/json

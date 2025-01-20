@@ -39,6 +39,16 @@ export class AuthController {
     }
   }
 
+  async checkIfEmailExists(req: Request, res: Response, next: NextFunction) {
+    try {
+      const email: string = req.params.email;
+      const exists = await this.authService.checkIfEmailExists(email);
+      res.json(ApiResponse.success({ exists }));
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async refreshToken(req: Request, res: Response, next: NextFunction) {
     try {
       const { refreshToken }: RefreshTokenDto = req.body;

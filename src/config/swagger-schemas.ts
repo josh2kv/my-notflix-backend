@@ -132,7 +132,24 @@
  *           enum: [STANDARD_WITH_ADS, STANDARD, PREMIUM]
  *           example: STANDARD_WITH_ADS
  *
-
+ *     CheckIfEmailExistsDto:
+ *       type: object
+ *       required:
+ *         - email
+ *       properties:
+ *         email:
+ *           type: string
+ *           format: email
+ *           example: user@example.com
+ *
+ *     RefreshTokenDto:
+ *       type: object
+ *       required:
+ *         - refreshToken
+ *       properties:
+ *         refreshToken:
+ *           type: string
+ *           example: 0dc7694d5dc62da2223a869e502f935b...
  *
  *     MovieDetails:
  *       type: object
@@ -227,7 +244,7 @@
  *         error:
  *           type: string
  *           nullable: true
- * 
+ *
  *     UserRole:
  *       type: string
  *       enum: [SUPER_ADMIN, ADMIN, USER]

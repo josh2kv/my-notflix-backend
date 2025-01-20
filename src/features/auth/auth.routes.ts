@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { AuthController } from "./auth.controller";
-import { LoginDto, RefreshTokenDto, RegisterDto } from "./auth.dto";
+import {
+  CheckIfEmailExistsDto,
+  LoginDto,
+  RefreshTokenDto,
+  RegisterDto,
+} from "./auth.dto";
 import { validateDto } from "@/shared/middlewares/validation.middleware";
 import { ROUTE_SEGMENT } from "@/config/routes";
 
@@ -86,6 +91,38 @@ router.post(
   ROUTE_SEGMENT.AUTH.REGISTER,
   validateDto(RegisterDto),
   authController.register.bind(authController)
+);
+
+/**
+ * @swagger
+ * /auth/check-email:
+ *   get:
+ *     summary: Check if email exists
+ *     tags: [Auth]
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Email exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 exists:
+ *                   type: boolean
+ *                   example: true
+ *       400:
+ *         description: Invalid input
+ */
+router.get(
+  ROUTE_SEGMENT.AUTH.CHECK_EMAIL + ROUTE_SEGMENT.EMAIL_PARAM,
+  validateDto(CheckIfEmailExistsDto, "params"),
+  authController.checkIfEmailExists.bind(authController)
 );
 
 /**

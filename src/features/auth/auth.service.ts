@@ -51,6 +51,11 @@ export class AuthService {
     };
   }
 
+  async checkIfEmailExists(email: string): Promise<boolean> {
+    const user = await this.userService.findUserByEmail(email);
+    return !!user;
+  }
+
   async refreshToken(token: string) {
     const found = await this.refreshTokenRepository.findOne({
       where: { token },
