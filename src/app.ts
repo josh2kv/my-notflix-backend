@@ -13,6 +13,8 @@ import { jwtStrategy } from "./config/auth";
 import authRoutes from "./features/auth/auth.routes";
 import movieRoutes from "./features/movies/movie.routes";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import { specs } from "./config/swagger";
 
 const bootstrap = async () => {
   const app: Express = express();
@@ -28,6 +30,8 @@ const bootstrap = async () => {
       maxAge: 86400,
     })
   );
+
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
   await initializeDatabase();
 

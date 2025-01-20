@@ -1,9 +1,8 @@
-import { UserRole } from "@/types";
+import { Plan, UserRole } from "@/types";
 import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
-  IsOptional,
   IsString,
   MaxLength,
   MinLength,
@@ -17,6 +16,7 @@ export class LoginDto {
 
   @IsString()
   @IsNotEmpty()
+  @MinLength(8)
   password: string;
 }
 
@@ -41,9 +41,13 @@ export class RegisterDto {
   @IsString()
   tmdbApiKey: string;
 
+  @IsNotEmpty()
   @IsEnum(UserRole)
-  @IsOptional()
   role: UserRole = UserRole.USER;
+
+  @IsNotEmpty()
+  @IsEnum(Plan)
+  plan: Plan = Plan.STANDARD_WITH_ADS;
 }
 
 export class RefreshTokenDto {
