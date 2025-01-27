@@ -12,7 +12,7 @@ export class AccountService {
       where: { _id: new ObjectId(id) },
     });
     if (!user) throw new NotFoundError("User not found");
-    console.log(dto);
+
     this.updateDefinedProperties(user, dto);
     return this.userRepository.save(user);
   }
@@ -20,7 +20,11 @@ export class AccountService {
   private updateDefinedProperties<T>(target: T, source: Partial<T>): void {
     Object.keys(source).forEach((key) => {
       const typedKey = key as keyof T;
-      if (source[typedKey] !== undefined && source[typedKey] !== null) {
+      if (
+        source[typedKey] !== undefined &&
+        source[typedKey] !== null &&
+        source[typedKey] !== ""
+      ) {
         target[typedKey] = source[typedKey]!;
       }
     });
