@@ -16,6 +16,11 @@ export const ROUTE_SEGMENT = {
     REFRESH_TOKEN: "/refresh-token",
   },
 
+  ACCOUNT: {
+    ROOT: "/account",
+    PROFILE: "/profile",
+  },
+
   USERS: {
     ROOT: "/users",
   },

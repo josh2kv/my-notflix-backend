@@ -28,12 +28,14 @@ export const requireRole = (roles: UserRole[]) => {
   };
 };
 
-export const requireSelf = (userId: string) => {
+export const requireSelf = () => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.isAuthenticated())
       return next(new UnauthorizedError("User not authenticated"));
 
-    if (req.user._id.toString() !== userId)
+    const userIdFromToken = req.user._id.toString();
+    const userIdFromParams = req.params.id;
+    if (userIdFromToken !== userIdFromParams)
       return next(
         new ForbiddenError("You are not allowed to access this resource")
       );

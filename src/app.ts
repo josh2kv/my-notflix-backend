@@ -15,6 +15,7 @@ import movieRoutes from "./features/movies/movie.routes";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { specs } from "./config/swagger";
+import accountRoutes from "./features/account/account.routes";
 
 const bootstrap = async () => {
   const app: Express = express();
@@ -43,6 +44,7 @@ const bootstrap = async () => {
   // Protected routes
   apiRouter.use(authenticate);
   apiRouter.use(ROUTE_SEGMENT.USERS.ROOT, userRoutes);
+  apiRouter.use(ROUTE_SEGMENT.ACCOUNT.ROOT, accountRoutes);
   apiRouter.use(ROUTE_SEGMENT.MOVIES.ROOT, movieRoutes);
 
   app.use(API_PREFIX + API_VERSION, apiRouter);

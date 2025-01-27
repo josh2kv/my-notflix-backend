@@ -30,7 +30,12 @@ export class CreateUserDto {
   @IsString()
   tmdbApiKey: string;
 
+  @IsEnum(Plan)
+  @IsOptional()
+  plan: Plan = Plan.STANDARD_WITH_ADS;
+
   @IsEnum(UserRole)
+  @IsOptional()
   role: UserRole = UserRole.USER;
 }
 
@@ -54,6 +59,10 @@ export class UpdateUserDto {
   @IsEnum(UserRole)
   @IsOptional()
   role?: UserRole;
+
+  @IsEnum(Plan)
+  @IsOptional()
+  plan?: Plan;
 }
 
 export type BriefUser = {
