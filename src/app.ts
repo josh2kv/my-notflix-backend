@@ -25,7 +25,7 @@ const bootstrap = async () => {
   app.use(
     cors({
       origin: true,
-      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: false,
       maxAge: 86400,
